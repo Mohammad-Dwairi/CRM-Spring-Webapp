@@ -9,8 +9,8 @@ public class TestJDBCConnection {
         try {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false&serverTimezone=UTC",
-                    "springstudent",
-                    "springstudent"
+                    "** DB Username **",
+                    "** Password **"
             );
             System.out.println("Connected Successfully");
             connection.close();
