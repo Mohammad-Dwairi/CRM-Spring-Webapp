@@ -20,10 +20,9 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 
-//@Configuration to tell Dispatcher Servlet that this is a Spring Configuration Class
-//@EnableWebMvc to Enable Spring MVC, Magic!
+//@Spring Configuration Class 
 //@EnableTransactionManagement to enable auto-transactions
-//@ComponentScan is used to register Components (Beans) at the Spring Container by scanning the given packages.
+//@ComponentScan is used to register Beans in the Spring Container by scanning the given packages.
 //Implementing WebMvcConfigurer is not Mandatory in this project, you will need it in more advanced projects.
 @Configuration
 @EnableWebMvc
@@ -41,18 +40,18 @@ public class Config implements WebMvcConfigurer {
         return viewResolverBean;
     }
 
-    //DataSource Bean contains meta data about the database to tell the session factory how to connect to that specific database.
+    //DataSource Bean contains meta-data about the database to tell the session factory how to connect to that specific database.
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSourceBean = new ComboPooledDataSource();
         dataSourceBean.setDriverClass("com.mysql.jdbc.Driver");
-        dataSourceBean.setJdbcUrl("jdbc:mysql://localhost:3306/TEST?useSSL=false&serverTimezone=UTC");
-        dataSourceBean.setUser("madwairi");
-        dataSourceBean.setPassword("Mohammad@2000");
+        dataSourceBean.setJdbcUrl("jdbc:mysql://localhost:3306/DatabaseName?useSSL=false&serverTimezone=UTC");
+        dataSourceBean.setUser("mysql username");
+        dataSourceBean.setPassword("password");
         return dataSourceBean;
     }
 
-    //We set Hibernate properties to personalize Hibernate logging and other Some properties i don't know (:
+    //Hibernate properties to personalize Hibernate logging and some other properties.
     @Bean
     public Properties hibernateProperty(){
         Properties hibernatePropertiesBean = new Properties();
@@ -66,7 +65,7 @@ public class Config implements WebMvcConfigurer {
     public LocalSessionFactoryBean sessionFactory() throws PropertyVetoException {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource()); //Injecting DataSource into SessionFactory, Important!
-        sessionFactoryBean.setPackagesToScan("com.mdwairy.crm.entity"); // Tell the Session Factory where to search for entity, Remember ORM --> Object-Relational-Mapping.
+        sessionFactoryBean.setPackagesToScan("com.mdwairy.crm.entity"); // Tell the Session Factory where to search for entities.
         sessionFactoryBean.setHibernateProperties(hibernateProperty());
         return sessionFactoryBean;
     }
