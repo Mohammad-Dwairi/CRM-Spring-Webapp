@@ -5,6 +5,7 @@ Customer-Relationship-Manger Demo project using:
 * Mysql
 * JSP
 * BootStrap
-Applying CRUD Database operations (Create-Read-Update-Delete) in addition to Search operation.
+
+Applying CRUD Database operations (Create-Read-Update-Delete) in addition to Search.
 
 ![alt text](https://i.imgur.com/XpNaHOd.png)
